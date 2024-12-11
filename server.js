@@ -31,7 +31,6 @@ app.use((req, res, next) => {
     next();
 })
 
-
 app.use('/api/employees', employeeRoutes);
 
 mongoose.connect(url)
