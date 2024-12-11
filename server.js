@@ -33,6 +33,7 @@ app.use((req, res, next) => {
 
 app.use('/api/employees', employeeRoutes);
 
+
 mongoose.connect(url)
     .then(() => {
         console.log('Connected the database'.green.inverse);
