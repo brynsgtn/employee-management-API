@@ -7,6 +7,10 @@ const employeeSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        employeeId: {
+            type: Number,
+            required: true,
+        },
         position: {
             type: String,
             required: true,

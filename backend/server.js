@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import employeeRoutes from './routers/employeeRouter.js'
 import colors from 'colors'
+import cors from 'cors'
 
 const app = express();
 
@@ -10,6 +11,8 @@ const url = process.env.MONGODB_URI;
 
 
 app.use(express.json());
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send("Welcome to employee-management-API");

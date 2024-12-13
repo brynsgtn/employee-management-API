@@ -5,6 +5,7 @@ export const addEmployee =  async (req, res) => {
     try {
         if (
             !req.body.name ||
+            !req.body.employeeId ||
             !req.body.position ||
             !req.body.department ||
             !req.body.salary
@@ -17,6 +18,7 @@ export const addEmployee =  async (req, res) => {
 
         const newEmployee = {
             name: req.body.name,
+            employeeId: req.body.employeeId,
             position: req.body.position,
             department: req.body.department,
             salary: req.body.salary,
