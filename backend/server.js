@@ -4,9 +4,11 @@ import employeeRoutes from './routers/employeeRouter.js'
 import colors from 'colors'
 import path from 'path';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
+app.use(cors());
 
 const port = process.env.PORT || 8000;
 const url = process.env.MONGODB_URI;
@@ -26,8 +28,7 @@ app.use((req, res, next) => {
 
     const color = methodColors[req.method] || 'white';
     console.log(
-        `${req.method} ${req.protocol}://${req.get('host')}${req.originalUrl}`
-        [color]
+        `${req.method} ${req.protocol}://${req.get('host')}${req.originalUrl}`[color]
     );
     next();
 })
