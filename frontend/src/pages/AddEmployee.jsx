@@ -26,7 +26,7 @@ const AddEmployee = () => {
         };
 
         axios
-            .post('http://localhost:4000/api/employees', data)
+            .post('https://employee-management-api-n3v4.onrender.com/api/employees', data)
             .then(() => {
                 console.log('Added!')
                 enqueueSnackbar('Employee added!', { variant: 'success' })
