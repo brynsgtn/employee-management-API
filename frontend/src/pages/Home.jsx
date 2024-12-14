@@ -9,10 +9,11 @@ const Home = () => {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const url = 'https://employee-management-api-n3v4.onrender.com';
 
   useEffect(() => {
     axios
-      .get('https://employee-management-api-n3v4.onrender.com/api/employees')
+      .get(`${url}/api/employees`)
       .then((res) => {
         setEmployees(res.data)
         setLoading(false);

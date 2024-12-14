@@ -15,10 +15,11 @@ const UpdateEmployee = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const { enqueueSnackbar } = useSnackbar();
+    const url = 'https://employee-management-api-n3v4.onrender.com';
 
     useEffect(() => {
         axios
-            .get(`http://localhost:4000/api/employees/${id}`)
+            .get(`${url}/api/employees/${id}`)
             .then((res) => {
                 console.log(res)
                 setName(res.data.name);

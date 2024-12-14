@@ -14,6 +14,7 @@ const AddEmployee = () => {
     const [salary, setSalary] = useState('');
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
+    const url = 'https://employee-management-api-n3v4.onrender.com';
 
     const handleAddEmployee = (e) => {
         e.preventDefault();
@@ -26,7 +27,7 @@ const AddEmployee = () => {
         };
 
         axios
-            .post('https://employee-management-api-n3v4.onrender.com/api/employees', data)
+            .post(`${url}/api/employees`, data)
             .then(() => {
                 console.log('Added!')
                 enqueueSnackbar('Employee added!', { variant: 'success' })

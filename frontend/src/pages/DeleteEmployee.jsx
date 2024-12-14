@@ -8,10 +8,11 @@ const DeleteEmployee = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const { enqueueSnackbar } = useSnackbar();
+    const url = 'https://employee-management-api-n3v4.onrender.com';
 
     const DeleteEmployee = () => {
         axios
-            .delete(`http://localhost:4000/api/employees/${id}`)
+            .delete(`${url}/api/employees/${id}`)
             .then(() => {
                 console.log(`Delete employee with id of ${id}`)
                 navigate('/')
