@@ -31,7 +31,7 @@ A simple full-stack CRUD application for managing employee records, built with N
 
 Both the backend and frontend are deployed on Render. You can access the full-stack application through the following link:
 
-- **Live Application**: [https://employee-management-api-n3v4.onrender.com/] (Employee Management System)
+- **Live Application**: [Employee Management System] (https://employee-management-api-n3v4.onrender.com/)
 
 ## License
 
