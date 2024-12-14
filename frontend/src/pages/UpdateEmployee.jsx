@@ -44,7 +44,7 @@ const UpdateEmployee = () => {
         };
 
         axios
-            .put(`http://localhost:4000/api/employees/${id}`, data)
+            .put(`${url}/api/employees/${id}`, data)
             .then(() => {
                 console.log('Updated!')
                 enqueueSnackbar('Employee updated!', { variant: 'success' })
