@@ -19,7 +19,7 @@ A simple full-stack CRUD application for managing employee records, built with N
 - **Colors**: Adds color to terminal outputs for better visualization.
 - **Render**: Platform used for deploying the backend and frontend together.
 
-### Frontend
+### Frontendxw
 
 - **React**: Frontend framework for building the UI.
 - **Axios**: For making HTTP requests to the backend API.
@@ -29,9 +29,9 @@ A simple full-stack CRUD application for managing employee records, built with N
 
 ## Deployment
 
-Both the backend and frontend are deployed on Render. You can access the full-stack application through the following link:
+Both the backend and frontend are deployed on Render. You can access the full-stack application through the following linxwk:
 
-- **Live Application**: [Employee Management System] (https://employee-management-api-n3v4.onrender.com/)
+- **Live Application**: [Employee Management System](https://employee-management-api-n3v4.onrender.com/)
 
 ## License
 
