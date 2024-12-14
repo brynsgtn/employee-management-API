@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/api/employees')
+      .get('https://employee-management-api-n3v4.onrender.com/api/employees')
       .then((res) => {
         setEmployees(res.data)
         setLoading(false);
