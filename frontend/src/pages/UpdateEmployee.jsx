@@ -1,11 +1,11 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { useState } from 'react'
 import axios from 'axios'
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack'
 
-const AddEmployee = () => {
+const UpdateEmployee = () => {
 
     const [name, setName] = useState('');
     const [employeeId, setEmployeeId] = useState('');
@@ -13,9 +13,26 @@ const AddEmployee = () => {
     const [department, setDepartment] = useState('');
     const [salary, setSalary] = useState('');
     const navigate = useNavigate();
+    const { id } = useParams();
     const { enqueueSnackbar } = useSnackbar();
 
-    const handleAddEmployee = (e) => {
+    useEffect(() => {
+        axios
+            .get(`http://localhost:4000/api/employees/${id}`)
+            .then((res) => {
+                console.log(res)
+                setName(res.data.name);
+                setEmployeeId(res.data.employeeId);
+                setPosition(res.data.position);
+                setDepartment(res.data.department);
+                setSalary(res.data.salary);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [])
+
+    const handleUpdateEmployee = (e) => {
         e.preventDefault();
         const data = {
             name,
@@ -26,10 +43,10 @@ const AddEmployee = () => {
         };
 
         axios
-            .post('http://localhost:4000/api/employees', data)
+            .put(`http://localhost:4000/api/employees/${id}`, data)
             .then(() => {
-                console.log('Added!')
-                enqueueSnackbar('Employee added!', { variant: 'success' })
+                console.log('Updated!')
+                enqueueSnackbar('Employee updated!', { variant: 'success' })
                 navigate('/')
             })
             .catch((error) => {
@@ -37,16 +54,16 @@ const AddEmployee = () => {
                 enqueueSnackbar('Please fill out all fields', { variant: 'error' });
             });
     }
+
     return (
         <>
             <div className='max-w-screen-lg mx-auto'>
                 <form className='mt-10'>
                     <div className="space-y-12">
-                        <h1 className='text-3xl mt-9 font-semibold'>Add Employee</h1>
+                        <h1 className='text-3xl my-9 font-semibold'>Update Employee</h1>
                         <div className="border-b border-gray-900/10 pb-12 pt-1">
                             <h2 className="text-base/7 font-semibold text-gray-900">Employee Information</h2>
                             <p className="mt-1 text-sm/6 text-gray-600">Please ensure all information, including full name, employee id position, and salary, is accurate.</p>
-
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
                                 <div className="sm:col-span-2">
                                     <label htmlFor="full-name" className="block text-sm/6 font-medium text-gray-900">
@@ -102,7 +119,6 @@ const AddEmployee = () => {
                                         />
                                     </div>
                                 </div>
-
                                 <div className="sm:col-span-2">
                                     <label htmlFor="department" className="block text-sm/6 font-medium text-gray-900">
                                         Department
@@ -138,7 +154,6 @@ const AddEmployee = () => {
                                             type="number"
                                             value={salary}
                                             onChange={(e) => setSalary(e.target.value)}
-                                            autoComplete="street-address"
                                             className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 [&::-webkit-inner-spin-button]:appearance-none"
                                         />
                                     </div>
@@ -153,15 +168,16 @@ const AddEmployee = () => {
                         <button
                             type="submit"
                             className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            onClick={handleAddEmployee}
+                            onClick={handleUpdateEmployee}
                         >
-                            Add
+                            Update
                         </button>
                     </div>
                 </form>
             </div>
         </>
+
     )
 }
 
-export default AddEmployee
+export default UpdateEmployee

@@ -3,20 +3,24 @@ import mongoose from 'mongoose';
 import employeeRoutes from './routers/employeeRouter.js'
 import colors from 'colors'
 import cors from 'cors'
+import path from 'path';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 
 const port = process.env.PORT || 8000;
 const url = process.env.MONGODB_URI;
 
+const __dirname = path.resolve();
 
 app.use(express.json());
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send("Welcome to employee-management-API");
-});
+// app.get('/', (req, res) => {
+//     res.send("Welcome to employee-management-API");
+// });
 
 app.use((req, res, next) => { 
     const methodColors = {
@@ -36,6 +40,13 @@ app.use((req, res, next) => {
 
 app.use('/api/employees', employeeRoutes);
 
+if(process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    })
+}
 
 mongoose.connect(url)
     .then(() => {
